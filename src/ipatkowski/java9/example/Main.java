@@ -1,11 +1,12 @@
 package ipatkowski.java9.example;
 
 import java.io.Serializable;
-import java.nio.file.FileSystemNotFoundException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -83,6 +84,27 @@ public class Main implements Java9TestInterface{
         System.out.println();
         Stream.iterate(4, i->i<120, i->3*i).forEach(System.out::print);
         Stream.iterate("a", i->!i.equals("aaaaaaaa"), i->i+"a").forEach(System.out::println);
+
+
+        //------- JAVA 10 --------
+        // Nowe metody fabryczne dla kolekcji List.copyOf() Set.copyOf() Map.copyOf()
+
+        List<String> imiona = List.of("Ala", "Kasia", "Piotr", "Ala");
+        List<String> nowaListaImiona = List.copyOf(imiona);
+        Set<String> setImiona = Set.copyOf(imiona);
+        System.out.println("Lista imiona " + nowaListaImiona);
+        System.out.println("Set imiona " + setImiona);
+
+        // Nowe metody dla Collectors → toUnmodifiableList/Set/Map
+
+        Collector<Object, ?, List<Object>> objectListCollector = Collectors.toUnmodifiableList();
+        List<Integer> collect = IntStream.range(1, 10).boxed().collect(Collectors.toUnmodifiableList());
+        System.out.println("UnmodifiableList : " + collect);
+
+        Stream.of(1,7,1,2,6,7,2,1).collect(Collectors.toUnmodifiableSet()).forEach(System.out::print);
+
+        //------- JAVA 11 --------
+
     }
 
     @Override
