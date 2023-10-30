@@ -64,8 +64,8 @@ public class Main implements Java9TestInterface{
         Person janek = new Person("Jan", "Kowalski", 44);
 
         Optional<Person> janekOptional = Optional.of(janek);
-        Optional<String> janekImie = janekOptional.map(Person::getImie);
-        Optional<String> janekNazwisko = janekOptional.flatMap(person -> Optional.of(person.getNazwisko()));
+        Optional<String> janekImie = janekOptional.map(Person::imie);
+        Optional<String> janekNazwisko = janekOptional.flatMap(person -> Optional.of(person.nazwisko()));
         System.out.println(janekImie.get());
         System.out.println(janekNazwisko.get());
 
