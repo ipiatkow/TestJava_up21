@@ -68,6 +68,7 @@ public class Main implements Java9TestInterface{
         Optional<String> janekNazwisko = janekOptional.flatMap(person -> Optional.of(person.nazwisko()));
         System.out.println(janekImie.get());
         System.out.println(janekNazwisko.get());
+        janek.innaMetoda("Test metody z Person");
 
         //System.out.println(firstOptional.orElseThrow());
         //System.out.println(firstOptional.orElseThrow(()-> new RuntimeException("Ale jaja")));
@@ -104,6 +105,13 @@ public class Main implements Java9TestInterface{
         Stream.of(1,7,1,2,6,7,2,1).collect(Collectors.toUnmodifiableSet()).forEach(System.out::print);
 
         //------- JAVA 11 --------
+        // Rozszerzenia API dla String → isBlank(), lines(), strip(), stripLeading(), stripTrailing(), repeat(n)
+
+        var blankString = "";
+        System.out.println("Test blank " + blankString.isBlank());
+
+        var multiLineString = "pierwsza\ndruga\ntrzecia\nczwarta";
+      multiLineString.lines().filter(l -> l.equals("druga")).forEach(System.out::print);
 
     }
 
